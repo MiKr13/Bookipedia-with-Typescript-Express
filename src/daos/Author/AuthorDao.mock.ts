@@ -1,42 +1,42 @@
-import { IBook } from '@entities';
+import { IAuthor } from '@entities';
 import { getRandomInt } from '@shared';
 
 import { MockDaoMock } from '../MockDb/MockDao.mock';
-import { IBookDao } from './BookDao';
+import { IAuthorDao } from './AuthorDao';
 
-export class BookDao extends MockDaoMock implements IBookDao {
+export class AuthorDao extends MockDaoMock implements IAuthorDao {
 
-    public async getAll(): Promise<IBook[]> {
+    public async getAll(): Promise<IAuthor[]> {
         try {
             const db = await super.openDb();
-            return db.books;
+            return db.authors;
         } catch (err) {
             throw err;
         }
     }
 
-    public async add(book: IBook): Promise<void> {
+    public async add(author: IAuthor): Promise<void> {
         try {
             const db = await super.openDb();
-            book.id = getRandomInt().toString();
-            db.books.push(book);
+            author.id = getRandomInt().toString();
+            db.authors.push(author);
             await super.saveDb(db);
         } catch (err) {
             throw err;
         }
     }
 
-    public async update(book: IBook): Promise<void> {
+    public async update(author: IAuthor): Promise<void> {
         try {
             const db = await super.openDb();
-            for (let i = 0; i < db.books.length; i++) {
-                if (db.books[i].id === book.id) {
-                    db.books[i] = book;
+            for (let i = 0; i < db.authors.length; i++) {
+                if (db.authors[i].id === author.id) {
+                    db.authors[i] = author;
                     await super.saveDb(db);
                     return;
                 }
             }
-            throw new Error('book not found');
+            throw new Error('Author not found');
         } catch (err) {
             throw err;
         }
@@ -45,28 +45,28 @@ export class BookDao extends MockDaoMock implements IBookDao {
     public async delete(id: string): Promise<void> {
         try {
             const db = await super.openDb();
-            for (const i of db.books) {
+            for (const i of db.authors) {
                 if (i.id === id) {
-                    db.books.splice(db.books.indexOf(i), 1);
+                    db.authors.splice(db.authors.indexOf(i), 1);
                     await super.saveDb(db);
                     return;
                 }
             }
-            throw new Error('Book not found');
+            throw new Error('Author not found');
         } catch (err) {
             throw err;
         }
     }
 
-    public async find(id: string): Promise<IBook[]> {
+    public async find(id: string): Promise<IAuthor[]> {
         try {
             const db = await super.openDb();
-            for (const i of db.books) {
+            for (const i of db.authors) {
                 if (i.id === id) {
                     return i;
                 }
             }
-            throw new Error('Book not found');
+            throw new Error('Author not found');
         } catch (err) {
             throw err;
         }

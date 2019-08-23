@@ -1,23 +1,23 @@
 
 export interface IBook {
-    id?: number;
+    id?: string;
     name: string;
-    email: string;
+    genre: string;
 }
 
-export class User implements IBook {
+export class Book implements IBook {
 
-    public id?: number;
+    public id?: string;
     public name: string;
-    public email: string;
+    public genre: string;
 
-    constructor(nameOrUser: string | IBook, email?: string) {
-        if (typeof nameOrUser === 'string') {
-            this.name = nameOrUser;
-            this.email = email || '';
+    constructor(nameorBook: string | IBook, genre?: string) {
+        if (typeof nameorBook === 'string') {
+            this.name = nameorBook;
+            this.genre = genre || '';
         } else {
-            this.name = nameOrUser.name;
-            this.email = nameOrUser.email;
+            this.name = nameorBook.name;
+            this.genre = nameorBook.genre;
         }
     }
 }

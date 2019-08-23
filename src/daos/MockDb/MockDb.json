@@ -7,13 +7,39 @@
     },
     {
       "name": "The Final Expire",
-      "genre": "Fantasy",
+      "genre": "Horror",
       "id": "906524522143"
     },
     {
       "name": "The Long Earth",
       "genre": "Sci-Fi",
       "id": "357437875835"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Grizzly Grizzle",
+      "age": 45,
+      "favouriteGenre": "Fantasy",
+      "id": "4958938493892"
+    },
+    {
+      "name": "Grizzly Grizzle",
+      "age": 66,
+      "favouriteGenre": "Fantasy",
+      "id": "1234545455636"
+    },
+    {
+      "name": "Grizzly Grizzle",
+      "age": 25,
+      "favouriteGenre": "Sci-Fi",
+      "id": "3423243545445"
+    },
+    {
+      "name": "Grizzly Grizzle",
+      "age": 70,
+      "favouriteGenre": "Horror",
+      "id": "4958938493829"
     }
   ]
 }

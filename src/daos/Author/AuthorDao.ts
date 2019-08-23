@@ -1,19 +1,19 @@
-import { IBook } from '@entities';
+import { IAuthor } from '@entities';
 
-export interface IBookDao {
-    getAll: () => Promise<IBook[]>;
-    add: (book: IBook) => Promise<void>;
-    update: (book: IBook) => Promise<void>;
+export interface IAuthorDao {
+    getAll: () => Promise<IAuthor[]>;
+    add: (book: IAuthor) => Promise<void>;
+    update: (book: IAuthor) => Promise<void>;
     delete: (id: string) => Promise<void>;
-    find: (id: string) => Promise<IBook[]>;
+    find: (id: string) => Promise<IAuthor[]>;
 }
 
-export class BookDao implements IBookDao {
+export class BookDao implements IAuthorDao {
 
     /**
      *
      */
-    public async getAll(): Promise<IBook[]> {
+    public async getAll(): Promise<IAuthor[]> {
         // TODO
         return [] as any;
     }
@@ -22,7 +22,7 @@ export class BookDao implements IBookDao {
      *
      * @param book
      */
-    public async add(book: IBook): Promise<void> {
+    public async add(book: IAuthor): Promise<void> {
         // TODO
         return {} as any;
     }
@@ -31,7 +31,7 @@ export class BookDao implements IBookDao {
      *
      * @param book
      */
-    public async update(book: IBook): Promise<void> {
+    public async update(book: IAuthor): Promise<void> {
         // TODO
         return {} as any;
     }
@@ -49,7 +49,7 @@ export class BookDao implements IBookDao {
      *
      * @param id
      */
-    public async find(id: string): Promise<IBook[]> {
+    public async find(id: string): Promise<IAuthor[]> {
         return [] as any;
     }
 }

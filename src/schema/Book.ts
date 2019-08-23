@@ -9,4 +9,4 @@ const BookType = new GraphQLObjectType({
     }),
 });
 
-export const BookSchema = BookType;
+export const BookObjectType = BookType;
