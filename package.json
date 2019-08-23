@@ -1,6 +1,10 @@
 {
   "name": "Bookipedia",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "author": "Mihir Kumar",
+  "description": "This is simple GraphQL implementation which is implemented using Express using Typescript in place of Javascript",
+  "license": "ISC",
+  "keywords": ["GraphQL", "Express", "TypeScript"],
   "scripts": {
     "build": "node ./util/build.js",
     "lint": "tslint --project \"tsconfig.json\"",
