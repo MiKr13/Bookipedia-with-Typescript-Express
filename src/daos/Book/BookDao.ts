@@ -4,8 +4,8 @@ export interface IBookDao {
     getAll: () => Promise<IBook[]>;
     add: (user: IBook) => Promise<void>;
     update: (user: IBook) => Promise<void>;
-    delete: (id: number) => Promise<void>;
-    find: (id: number) => Promise<IBook[]>;
+    delete: (id: string) => Promise<void>;
+    find: (id: string) => Promise<IBook[]>;
 }
 
 export class BookDao implements IBookDao {
@@ -40,7 +40,7 @@ export class BookDao implements IBookDao {
      *
      * @param id
      */
-    public async delete(id: number): Promise<void> {
+    public async delete(id: string): Promise<void> {
         // TODO
         return {} as any;
     }
@@ -49,7 +49,7 @@ export class BookDao implements IBookDao {
      *
      * @param id
      */
-    public async find(id: number): Promise<IBook[]> {
+    public async find(id: string): Promise<IBook[]> {
         return [] as any;
     }
 }

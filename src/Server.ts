@@ -18,6 +18,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/graphql', graphqlHTTP({
     schema: RootSchema,
+    graphiql: true,
 }));
 
 /**

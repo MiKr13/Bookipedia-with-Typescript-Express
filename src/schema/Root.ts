@@ -1,5 +1,5 @@
 import { BookDao } from '@daos';
-import { GraphQLObjectType, GraphQLInt, GraphQLSchema } from 'graphql';
+import { GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql';
 
 import { BookSchema } from './Book';
 import { logger } from '@shared';
@@ -12,12 +12,12 @@ const RootQuery = new GraphQLObjectType({
         book: {
             type: BookSchema,
             args: {
-                id: { type: GraphQLInt },
+                id: { type: GraphQLString },
             },
             async resolve(parent, args) {
                 // query ID from some DB
                 try {
-                    return await BookDao.find(args.id);
+                    return await Book.find(args.id);
                 } catch (err) {
                     logger.error(err.message, err);
                 }

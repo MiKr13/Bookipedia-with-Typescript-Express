@@ -41,7 +41,7 @@ export class BookDao extends MockDaoMock implements IBookDao {
         }
     }
 
-    public async delete(id: number): Promise<void> {
+    public async delete(id: string): Promise<void> {
         try {
             const db = await super.openDb();
             for (const i of db.books) {
@@ -57,7 +57,7 @@ export class BookDao extends MockDaoMock implements IBookDao {
         }
     }
 
-    public async find(id: number): Promise<IBook[]> {
+    public async find(id: string): Promise<IBook[]> {
         try {
             const db = await super.openDb();
             for (const i of db.books) {
