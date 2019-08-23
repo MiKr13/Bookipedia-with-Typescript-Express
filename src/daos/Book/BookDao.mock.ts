@@ -1,5 +1,5 @@
 import { IBook } from '@entities';
-import { getRandomInt } from '@shared';
+import { getRandomInt, logger } from '@shared';
 
 import { MockDaoMock } from '../MockDb/MockDao.mock';
 import { IBookDao } from './BookDao';
@@ -67,6 +67,25 @@ export class BookDao extends MockDaoMock implements IBookDao {
                 }
             }
             throw new Error('Book not found');
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    public async findAll(id: string): Promise<IBook[] | Error> {
+        try {
+            const db = await super.openDb();
+            const books: any = [];
+            for (const i of db.books) {
+                if (i.authorID === id) {
+                    books.push(i);
+                }
+            }
+            if (books.length) {
+                return books;
+            } else {
+                throw new Error('Books not found');
+            }
         } catch (err) {
             throw err;
         }

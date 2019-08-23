@@ -3,7 +3,7 @@ export interface IBook {
     id?: string;
     name: string;
     genre: string;
-    authorID: string,
+    authorID: string;
 }
 
 export class Book implements IBook {

@@ -23,6 +23,24 @@
       "genre": "Sci-Fi",
       "authorID": "3423243545445",
       "id": "357437875835"
+    },
+    {
+      "name": "The Hero of Ages",
+      "genre": "Fantasy",
+      "authorID": "4958938493892",
+      "id": "159123164361"
+    },
+    {
+      "name": "The Color of Blood",
+      "genre": "Horror",
+      "authorID": "4958938493829",
+      "id": "906524522146"
+    },
+    {
+      "name": "Solar-Flare",
+      "genre": "Sci-Fi",
+      "authorID": "3423243545445",
+      "id": "357437875836"
     }
   ],
   "authors": [

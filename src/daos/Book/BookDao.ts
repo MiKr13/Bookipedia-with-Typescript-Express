@@ -6,6 +6,7 @@ export interface IBookDao {
     update: (book: IBook) => Promise<void>;
     delete: (id: string) => Promise<void>;
     find: (id: string) => Promise<IBook[]>;
+    findAll: (id: string) => Promise<IBook[] | Error>;
 }
 
 export class BookDao implements IBookDao {
@@ -50,6 +51,14 @@ export class BookDao implements IBookDao {
      * @param id
      */
     public async find(id: string): Promise<IBook[]> {
+        return [] as any;
+    }
+
+    /**
+     *
+     * @param id
+     */
+    public async findAll(id: string): Promise<IBook[] | Error> {
         return [] as any;
     }
 }
