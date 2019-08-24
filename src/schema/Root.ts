@@ -5,7 +5,6 @@ import { BookDao, AuthorDao } from '@daos';
 
 import { BookObjectType } from './Book';
 import { AuthorObjectType } from './Author';
-import { resolve } from 'path';
 
 const Book = new BookDao();
 const Author = new AuthorDao();
