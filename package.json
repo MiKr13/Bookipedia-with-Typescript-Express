@@ -4,7 +4,11 @@
   "author": "Mihir Kumar",
   "description": "This is simple GraphQL implementation which is implemented using Express using Typescript in place of Javascript",
   "license": "ISC",
-  "keywords": ["GraphQL", "Express", "TypeScript"],
+  "keywords": [
+    "GraphQL",
+    "Express",
+    "TypeScript"
+  ],
   "scripts": {
     "build": "node ./util/build.js",
     "lint": "tslint --project \"tsconfig.json\"",
@@ -14,7 +18,7 @@
   },
   "_moduleAliases": {
     "@daos": "dist/daos",
-    "@entities": "dist/entities",
+    "@entities": "dist/models",
     "@shared": "dist/shared",
     "@server": "dist/Server"
   },
@@ -27,6 +31,7 @@
     "graphql": "^14.5.0",
     "http-status-codes": "^1.3.2",
     "module-alias": "^2.2.1",
+    "mongoose": "^5.6.10",
     "morgan": "^1.9.1",
     "winston": "^3.2.1"
   },
@@ -37,6 +42,7 @@
     "@types/find": "^0.2.1",
     "@types/jasmine": "^3.4.0",
     "@types/jsonfile": "^5.0.0",
+    "@types/mongoose": "^5.5.13",
     "@types/morgan": "^1.7.37",
     "@types/node": "^12.7.2",
     "@types/supertest": "^2.0.8",

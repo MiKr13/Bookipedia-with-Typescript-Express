@@ -10,7 +10,7 @@ const Book = new BookDao();
 const AuthorType = new GraphQLObjectType({
     name: 'Author',
     fields: () => ({
-        id: { type: GraphQLID },
+        _id: { type: GraphQLID },
         name: { type: GraphQLString },
         age: { type: GraphQLInt },
         favouriteGenre: { type: GraphQLString },
@@ -18,7 +18,7 @@ const AuthorType = new GraphQLObjectType({
             type: new GraphQLList(BookObjectType),
             async resolve(parent, args) {
                 try {
-                    return await Book.findAll(parent.id);
+                    return await Book.findAllByAuthorID(parent.id);
                 } catch (err) {
                     logger.error(err.message, err);
                 }

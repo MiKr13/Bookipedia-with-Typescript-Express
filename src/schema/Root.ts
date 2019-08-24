@@ -15,12 +15,12 @@ const RootQuery = new GraphQLObjectType({
         book: {
             type: BookObjectType,
             args: {
-                id: { type: GraphQLID },
+                _id: { type: GraphQLID },
             },
             async resolve(parent, args) {
                 // query ID from some DB
                 try {
-                    return await Book.find(args.id);
+                    return await Book.find(args._id);
                 } catch (err) {
                     logger.error(err.message, err);
                 }
@@ -29,11 +29,11 @@ const RootQuery = new GraphQLObjectType({
         author: {
             type: AuthorObjectType,
             args: {
-                id: { type: GraphQLID },
+                _id: { type: GraphQLID },
             },
             async resolve(parent, args) {
                 try {
-                    return await Author.find(args.id);
+                    return await Author.find(args._id);
                 } catch (err) {
                     logger.error(err.message, err);
                 }

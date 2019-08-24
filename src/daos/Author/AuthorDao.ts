@@ -1,55 +1,82 @@
 import { IAuthor } from '@entities';
+import { DB } from './../controllers/mongoose';
+import { logger } from '@shared';
 
 export interface IAuthorDao {
     getAll: () => Promise<IAuthor[]>;
-    add: (book: IAuthor) => Promise<void>;
-    update: (book: IAuthor) => Promise<void>;
+    add: (author: IAuthor) => Promise<void>;
+    update: (author: IAuthor) => Promise<void>;
     delete: (id: string) => Promise<void>;
-    find: (id: string) => Promise<IAuthor[]>;
+    find: (id: string) => Promise<IAuthor>;
 }
 
-export class BookDao implements IAuthorDao {
+export class AuthorDao implements IAuthorDao {
 
     /**
      *
      */
     public async getAll(): Promise<IAuthor[]> {
-        // TODO
-        return [] as any;
+        try {
+            const data = await DB.Models.Author.find().exec();
+            return data;
+        } catch (err) {
+            throw err;
+        }
     }
 
     /**
      *
-     * @param book
+     * @param author
      */
-    public async add(book: IAuthor): Promise<void> {
-        // TODO
-        return {} as any;
+    public async add(author: IAuthor): Promise<void> {
+        try {
+            await new DB.Models.Author(author).save();
+        } catch (err) {
+            throw err;
+        }
     }
 
     /**
      *
-     * @param book
+     * @param author
      */
-    public async update(book: IAuthor): Promise<void> {
-        // TODO
-        return {} as any;
+    public async update(author: IAuthor): Promise<void> {
+        try {
+            await DB.Models.Author
+                .findOneAndUpdate({ _id: author._id }, new DB.Models.Author(author), { new: true }).exec();
+            throw new Error('Author not found');
+        } catch (err) {
+            throw err;
+        }
     }
 
     /**
      *
-     * @param id
+     * @param _id
      */
-    public async delete(id: string): Promise<void> {
-        // TODO
-        return {} as any;
+    public async delete(_id: string): Promise<void> {
+        try {
+            await DB.Models.Author.findByIdAndDelete({ _id }).exec();
+            throw new Error('Author not found');
+        } catch (err) {
+            throw err;
+        }
     }
 
     /**
      *
-     * @param id
+     * @param _id
      */
-    public async find(id: string): Promise<IAuthor[]> {
-        return [] as any;
+    public async find(_id: string): Promise<IAuthor> {
+        try {
+            const data = await DB.Models.Author.find({ _id }).exec();
+            if (data) {
+                return data[0];
+            }
+            throw new Error('Author not found');
+        } catch (err) {
+            throw err;
+        }
     }
+
 }

@@ -10,7 +10,7 @@ const Author = new AuthorDao();
 const BookType = new GraphQLObjectType({
     name: 'Book',
     fields: () => ({
-        id: { type: GraphQLID },
+        _id: { type: GraphQLID },
         name: { type: GraphQLString },
         genre: { type: GraphQLString },
         author: {

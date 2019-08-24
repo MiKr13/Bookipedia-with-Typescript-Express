@@ -20,7 +20,7 @@
         "src/schema"
       ],
       "@entities": [
-        "src/entities"
+        "src/models"
       ],
       "@shared": [
         "src/shared"
