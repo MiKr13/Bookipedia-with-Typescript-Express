@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList } from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull } from 'graphql';
 
 import { logger } from '@shared';
 import { BookDao, AuthorDao } from '@daos';
@@ -31,9 +31,9 @@ const AuthorType = new GraphQLObjectType({
 const addAuthorMutation = {
     type: AuthorType,
     args: {
-        name: { type: GraphQLString },
-        age: { type: GraphQLInt },
-        favouriteGenre: { type: GraphQLString },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) },
+        favouriteGenre: { type: new GraphQLNonNull(GraphQLString) },
     },
     async resolve(parent: any, args: any) {
         try {
