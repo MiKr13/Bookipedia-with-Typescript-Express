@@ -6,7 +6,7 @@ export interface IAuthor extends Document {
     favouriteGenre: string;
 }
 
-export interface IAuthorModel extends Model<IAuthor> {};
+export interface IAuthorModel extends Model<IAuthor> {}
 
 export class Author {
 

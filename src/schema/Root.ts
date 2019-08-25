@@ -3,8 +3,8 @@ import { GraphQLObjectType, GraphQLSchema, GraphQLID, GraphQLList } from 'graphq
 import { logger } from '@shared';
 import { BookDao, AuthorDao } from '@daos';
 
-import { BookObjectType } from './Book';
-import { AuthorObjectType } from './Author';
+import { BookObjectType, addBook } from './Book';
+import { AuthorObjectType, addAuthor } from './Author';
 
 const Book = new BookDao();
 const Author = new AuthorDao();
@@ -17,7 +17,7 @@ const RootQuery = new GraphQLObjectType({
             args: {
                 _id: { type: GraphQLID },
             },
-            async resolve(parent, args) {
+            async resolve(parent: any, args: any) {
                 // query ID from some DB
                 try {
                     return await Book.find(args._id);
@@ -31,7 +31,7 @@ const RootQuery = new GraphQLObjectType({
             args: {
                 _id: { type: GraphQLID },
             },
-            async resolve(parent, args) {
+            async resolve(parent: any, args: any) {
                 try {
                     return await Author.find(args._id);
                 } catch (err) {
@@ -41,7 +41,7 @@ const RootQuery = new GraphQLObjectType({
         },
         books: {
             type: new GraphQLList(BookObjectType),
-            async resolve(parent, args) {
+            async resolve(parent: any, args: any) {
                 try {
                     return await Book.getAll();
                 } catch (err) {
@@ -51,7 +51,7 @@ const RootQuery = new GraphQLObjectType({
         },
         authors: {
             type: new GraphQLList(AuthorObjectType),
-            async resolve(parent, args) {
+            async resolve(parent: any, args: any) {
                 try {
                     return await Author.getAll();
                 } catch (err) {
@@ -62,6 +62,15 @@ const RootQuery = new GraphQLObjectType({
     },
 });
 
+const Mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addBook,
+        addAuthor,
+    },
+});
+
 export const RootSchema = new GraphQLSchema({
     query: RootQuery,
+    mutation: Mutation,
 });

@@ -3,7 +3,7 @@ import { DB } from './../controllers/mongoose';
 
 export interface IBookDao {
     getAll: () => Promise<IBook[]>;
-    add: (book: IBook) => Promise<void>;
+    add: (book: IBook) => Promise<IBook>;
     update: (book: IBook) => Promise<void>;
     delete: (id: string) => Promise<void>;
     find: (id: string) => Promise<IBook>;
@@ -28,9 +28,10 @@ export class BookDao implements IBookDao {
      *
      * @param book
      */
-    public async add(book: IBook): Promise<void> {
+    public async add(book: IBook): Promise<IBook> {
         try {
-            await new DB.Models.Book(book).save();
+            const data = await new DB.Models.Book(book).save();
+            return data;
         } catch (err) {
             throw err;
         }

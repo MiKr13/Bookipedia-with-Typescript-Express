@@ -1,10 +1,9 @@
 import { IAuthor } from '@entities';
 import { DB } from './../controllers/mongoose';
-import { logger } from '@shared';
 
 export interface IAuthorDao {
     getAll: () => Promise<IAuthor[]>;
-    add: (author: IAuthor) => Promise<void>;
+    add: (author: IAuthor) => Promise<IAuthor>;
     update: (author: IAuthor) => Promise<void>;
     delete: (id: string) => Promise<void>;
     find: (id: string) => Promise<IAuthor>;
@@ -28,9 +27,10 @@ export class AuthorDao implements IAuthorDao {
      *
      * @param author
      */
-    public async add(author: IAuthor): Promise<void> {
+    public async add(author: IAuthor): Promise<IAuthor> {
         try {
-            await new DB.Models.Author(author).save();
+            const data = await new DB.Models.Author(author).save();
+            return data;
         } catch (err) {
             throw err;
         }

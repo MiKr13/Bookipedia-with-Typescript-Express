@@ -1,11 +1,12 @@
 import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList } from 'graphql';
 
 import { logger } from '@shared';
-import { BookDao } from '@daos';
+import { BookDao, AuthorDao } from '@daos';
 
 import { BookObjectType } from './Book';
 
 const Book = new BookDao();
+const Author = new AuthorDao();
 
 const AuthorType = new GraphQLObjectType({
     name: 'Author',
@@ -16,7 +17,7 @@ const AuthorType = new GraphQLObjectType({
         favouriteGenre: { type: GraphQLString },
         books: {
             type: new GraphQLList(BookObjectType),
-            async resolve(parent, args) {
+            async resolve(parent: any, args: any) {
                 try {
                     return await Book.findAllByAuthorID(parent.id);
                 } catch (err) {
@@ -27,4 +28,25 @@ const AuthorType = new GraphQLObjectType({
     }),
 });
 
+const addAuthorMutation = {
+    type: AuthorType,
+    args: {
+        name: { type: GraphQLString },
+        age: { type: GraphQLInt },
+        favouriteGenre: { type: GraphQLString },
+    },
+    async resolve(parent: any, args: any) {
+        try {
+            return await Author.add({
+                name: args.name,
+                age: args.age,
+                favouriteGenre: args.favouriteGenre,
+            });
+        } catch (err) {
+            logger.error(err.message, err);
+        }
+    },
+};
+
 export const AuthorObjectType = AuthorType as any;
+export const addAuthor = addAuthorMutation as any;
