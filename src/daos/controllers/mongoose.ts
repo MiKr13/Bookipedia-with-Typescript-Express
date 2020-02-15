@@ -1,4 +1,4 @@
-import { connect, connection, Connection, model } from 'mongoose';
+import { connect, connection, Connection } from 'mongoose';
 
 import { Book, IBookModel } from '@entities';
 import { Author, IAuthorModel } from '@entities';
@@ -17,7 +17,11 @@ export class DB {
     private models: IModels;
 
     constructor() {
-        connect(process.env.MONGO_URI as string, { useNewUrlParser: true });
+        try {
+            connect(process.env.MONGO_URI as string, { useNewUrlParser: true });
+        } catch (err) {
+            logger.error(err);
+        }
         this.mongoDB = connection;
         this.mongoDB.on('open', this.connected);
         this.mongoDB.on('error', this.error);

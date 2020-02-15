@@ -1,5 +1,5 @@
 {
-  "name": "Bookipedia",
+  "name": "bookipedia",
   "version": "0.0.1",
   "author": "Mihir Kumar",
   "description": "This is simple GraphQL implementation which is implemented using Express using Typescript in place of Javascript",
@@ -23,7 +23,9 @@
     "@server": "dist/Server"
   },
   "dependencies": {
+    "@types/cors": "^2.8.6",
     "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
     "cross-env": "^5.2.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",

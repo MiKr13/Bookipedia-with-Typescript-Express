@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import logger from 'morgan';
 import path from 'path';
 import graphqlHTTP from 'express-graphql';
+import cors from 'cors';
 
 import { RootSchema } from '@schema';
 
@@ -12,6 +13,7 @@ const app = express();
 
 // Add middleware/settings/routes to express.
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
